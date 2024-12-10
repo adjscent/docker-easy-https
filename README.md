@@ -1,5 +1,9 @@
 # docker-easy-https
 
+Docker for https. A very simple and wrong way.
+
+https://hub.docker.com/repository/docker/adjscent/easy-https/general
+
 docker-compose.yml example
 ```
   easyhttps:
