@@ -1,0 +1,37 @@
+events {}
+
+http {
+    # Define the upstream server using the environment variable
+    upstream backend {
+        server ${UPSTREAM_SERVER};
+    }
+
+    server {
+        listen 80;
+        server_name localhost;
+
+        # Redirect all HTTP traffic to HTTPS
+        return 301 https://$host$request_uri;
+    }
+
+    server {
+        listen 443 ssl;
+        server_name localhost;
+
+        # SSL configuration
+        ssl_certificate /etc/nginx/ssl/server.crt;
+        ssl_certificate_key /etc/nginx/ssl/server.key;
+
+        # Disable HSTS headers
+        add_header Strict-Transport-Security "";
+
+        # Proxy requests to the upstream server
+        location / {
+            proxy_pass http://backend;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+        }
+    }
+}
