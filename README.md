@@ -1,4 +1,4 @@
-# docker-easy-https
+# docker-easy-https [![Docker Image CI](https://github.com/adjscent/docker-easy-https/actions/workflows/docker-image.yml/badge.svg)](https://github.com/adjscent/docker-easy-https/actions/workflows/docker-image.yml)
 
 Docker for https. A very simple and wrong way.
 
